@@ -7,6 +7,7 @@ export default {
       colors: {
         primary: {
           DEFAULT: '#819280',
+          "bg": '#ececec',
         },
       },
     },

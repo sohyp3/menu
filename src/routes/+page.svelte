@@ -1,4 +1,3 @@
-
 <div>
 	<div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
 		<img src="/images/logo.jpg" class="rounded-full" alt="logo" />
@@ -24,35 +23,40 @@
 		</div>
 
 		<div class="flex z-30 gap-9 text-3xl text-black">
-			<div class="flex flex-col items-center">
-				<div
-					class="bg-primary rounded-full p-8 transition-colors duration-200 hover:cursor-pointer hover:bg-[#A7C0A6]"
-				>
-					<img src="/icons/drink.svg" alt="drink" class="w-12" />
+			<a href="/category/3">
+				<div class="flex flex-col items-center">
+					<div
+						class="bg-primary rounded-full p-8 transition-colors duration-200 hover:cursor-pointer hover:bg-[#A7C0A6]"
+					>
+						<img src="/icons/drink.svg" alt="drink" class="w-12" />
+					</div>
+					<h1>Drink</h1>
 				</div>
-				<h1>Drink</h1>
-			</div>
+			</a>
 
-			<div class="flex flex-col items-center">
-				<div
-					class="bg-primary rounded-full p-8 transition-colors duration-200 hover:cursor-pointer hover:bg-[#A7C0A6]"
-				>
-					<img src="/icons/food.svg" alt="food" class="w-12" />
+			<a href="/category/1">
+				<div class="flex flex-col items-center">
+					<div
+						class="bg-primary rounded-full p-8 transition-colors duration-200 hover:cursor-pointer hover:bg-[#A7C0A6]"
+					>
+						<img src="/icons/food.svg" alt="food" class="w-12" />
+					</div>
+					<h1>Food</h1>
 				</div>
-				<h1>Food</h1>
-			</div>
+			</a>
 
-			<div class="flex flex-col items-center">
-				<div
-					class="bg-primary rounded-full p-8 transition-colors duration-200 hover:cursor-pointer hover:bg-[#A7C0A6]"
-				>
-					<img src="/icons/special.svg" alt="Special" class="w-12" />
+			<a href="/category/5">
+				<div class="flex flex-col items-center">
+					<div
+						class="bg-primary rounded-full p-8 transition-colors duration-200 hover:cursor-pointer hover:bg-[#A7C0A6]"
+					>
+						<img src="/icons/special.svg" alt="Special" class="w-12" />
+					</div>
+					<h1>Special</h1>
 				</div>
-				<h1>Special</h1>
-			</div>
+			</a>
 		</div>
 	</div>
-
 </div>
 
 <style>
