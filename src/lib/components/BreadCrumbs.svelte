@@ -1,5 +1,6 @@
 <script>
-	let { category, item = "",language} = $props();
+	let { category, item = "",} = $props();
+    import { language } from '$lib/stores/language.js';
 </script>
 
 
@@ -7,10 +8,10 @@
     <!-- {category.name[language]} -->
     <a href="/"><img src="/icons/home.svg" class="w-4" alt="home"></a>
     <span>/</span>
-    <a href="/category/{category._id}">{category.name[language]}</a>
+    <a href="/category/{category._id}">{category.name[$language]}</a>
     {#if item != ""}
     <span>/</span>
-    <span>{item.name[language]}</span>
+    <span>{item.name[$language]}</span>
     {/if}
 
 

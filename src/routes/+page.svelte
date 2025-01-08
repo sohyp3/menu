@@ -1,3 +1,12 @@
+<script>
+	import { language } from '$lib/stores/language.js';
+
+	const translations = {
+		en: { food: 'Food',drink:"Drink",special :"special" },
+		tr: { food: 'Yemek',drink:"Içecek",special :"spesial" },
+	};
+</script>
+
 <div>
 	<div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
 		<img src="/images/logo.jpg" class="rounded-full" alt="logo" />
@@ -23,36 +32,36 @@
 		</div>
 
 		<div class="flex z-30 gap-9 text-3xl text-black">
-			<a href="/category/3">
+			<a href="/parent_category/2">
 				<div class="flex flex-col items-center">
 					<div
-						class="bg-primary rounded-full p-8 transition-colors duration-200 hover:cursor-pointer hover:bg-[#A7C0A6]"
+						class="rounded-full bg-primary p-8 transition-colors duration-200 hover:cursor-pointer hover:bg-[#A7C0A6]"
 					>
 						<img src="/icons/drink.svg" alt="drink" class="w-12" />
 					</div>
-					<h1>Drink</h1>
+					<h1>{translations[$language].drink}</h1>
 				</div>
 			</a>
 
-			<a href="/category/1">
+			<a href="/parent_category/1">
 				<div class="flex flex-col items-center">
 					<div
-						class="bg-primary rounded-full p-8 transition-colors duration-200 hover:cursor-pointer hover:bg-[#A7C0A6]"
+						class="rounded-full bg-primary p-8 transition-colors duration-200 hover:cursor-pointer hover:bg-[#A7C0A6]"
 					>
 						<img src="/icons/food.svg" alt="food" class="w-12" />
 					</div>
-					<h1>Food</h1>
+					<h1>{translations[$language].food}</h1>
 				</div>
 			</a>
 
-			<a href="/category/5">
+			<a href="/parent_category/3">
 				<div class="flex flex-col items-center">
 					<div
-						class="bg-primary rounded-full p-8 transition-colors duration-200 hover:cursor-pointer hover:bg-[#A7C0A6]"
+						class="rounded-full bg-primary p-8 transition-colors duration-200 hover:cursor-pointer hover:bg-[#A7C0A6]"
 					>
 						<img src="/icons/special.svg" alt="Special" class="w-12" />
 					</div>
-					<h1>Special</h1>
+					<h1>{translations[$language].special}</h1>
 				</div>
 			</a>
 		</div>

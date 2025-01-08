@@ -3,8 +3,12 @@
 	import { page } from '$app/stores';
 	import { browser } from '$app/environment';
 
-    import ItemCard from '$lib/components/ItemCard.svelte';
+	import { language } from '$lib/stores/language.js';
+
+	import ItemCard from '$lib/components/ItemCard.svelte';
 	import BreadCrumbs from '$lib/components/BreadCrumbs.svelte';
+
+	import { categories } from '$lib/stores/categories';
 
 
 	let categoryId;
@@ -14,16 +18,8 @@
 	let category = {};
 	let loading = true;
 
-	let language = 'en';
-	if (browser) {
-		language = localStorage.getItem('language') || 'en';
-	}
-
-	function toggleLanguage() {
-		language = language === 'en' ? 'tr' : 'en';
-		if (browser) {
-			localStorage.setItem('language', language);
-		}
+	function toggleLanguage(lang) {
+		language.set(lang);
 	}
 	async function fetchCategoryData() {
 		try {
@@ -31,6 +27,8 @@
 			const categoryRes = await fetch(`/api/categories/${categoryId}`);
 			if (!categoryRes.ok) throw new Error('Failed to fetch category');
 			category = await categoryRes.json();
+
+
 			parentCategoryId = category.parent_category_id;
 			console.log(category);
 
@@ -43,6 +41,9 @@
 			const siblingsRes = await fetch(`/api/categories?parent_category_id=${parentCategoryId}`);
 			if (!siblingsRes.ok) throw new Error('Failed to fetch sibling categories');
 			siblingCategories = await siblingsRes.json();
+
+			categories.set(siblingCategories)
+
 			loading = false;
 		} catch (error) {
 			console.error(error);
@@ -67,15 +68,8 @@
 
 <div class="flex h-screen bg-primary-bg">
 	<!-- Sidebar -->
-	<aside class="p-4 w-64 bg-gray-100 border-r">
-		<div class="mb-4">
-			<button
-				class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
-				on:click={toggleLanguage}
-			>
-				{language === 'tr' ? 'İngilizceye Geç' : 'Türkçeye Geç'}
-			</button>
-		</div>
+	<!-- <aside class="p-4 w-64 bg-gray-100 border-r">
+		<div class="mb-4"></div>
 		<h2 class="mb-4 text-lg font-bold">Diğer Kategoriler</h2>
 		<ul class="space-y-2">
 			{#each siblingCategories as sibling}
@@ -85,12 +79,12 @@
 						class="px-4 py-2 font-medium text-gray-700 rounded cursor-pointer hover:bg-gray-200"
 						class:selected={categoryId === sibling._id}
 					>
-						{sibling.name[language]}
+						{sibling.name[$language]}
 					</a>
 				</li>
 			{/each}
 		</ul>
-	</aside>
+	</aside> -->
 
 	<div class="flex-1">
 		<nav class="relative w-full shadow-lg">
@@ -110,7 +104,7 @@
 							alt="share"
 						/></span
 					>
-					<div class="relative p-2 rounded-full bg-primary group hover:cursor-pointer">
+					<div class="relative p-2 rounded-full group bg-primary hover:cursor-pointer">
 						<img
 							src="/icons/language.svg"
 							class="w-4 hover:cursor-pointer hover:drop-shadow-md"
@@ -122,13 +116,13 @@
 							<ul>
 								<li
 									class="px-4 py-2 cursor-pointer hover:bg-gray-200"
-									on:click={() => toggleLanguage('en')}
+									on:click={() => language.set('en')}
 								>
 									English
 								</li>
 								<li
 									class="px-4 py-2 cursor-pointer hover:bg-gray-200"
-									on:click={() => toggleLanguage('tr')}
+									on:click={() => language.set('tr')}
 								>
 									Türkçe
 								</li>
@@ -147,21 +141,19 @@
 		<!-- Content -->
 
 		<main class="flex overflow-y-auto flex-col gap-4 justify-center items-center p-6 text-center">
-			<div class="max-w-7xl">
-
+			<div class="w-[960px]">
 				{#if loading}
 					<h2>loading</h2>
 				{:else}
-				<BreadCrumbs {category} {language} />
-					<h2 class="py-4 mb-4 text-3xl font-bold">{category.name[language]}</h2>
+					<BreadCrumbs {category} />
+					<h2 class="py-4 mb-4 text-3xl font-bold">{category.name[$language]}</h2>
 				{/if}
 
 				{#if items.length > 0}
 					<div class="py-4 w-full">
 						<ul class="grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-4">
 							{#each items as item}
-                                <ItemCard {item} {language} />
-								
+								<ItemCard {item}  />
 							{/each}
 						</ul>
 					</div>
