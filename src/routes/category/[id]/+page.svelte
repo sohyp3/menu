@@ -7,6 +7,7 @@
 
 	import ItemCard from '$lib/components/ItemCard.svelte';
 	import BreadCrumbs from '$lib/components/BreadCrumbs.svelte';
+	import TopBar from '$lib/components/TopBar.svelte';
 
 	import { categories } from '$lib/stores/categories';
 
@@ -30,7 +31,6 @@
 
 
 			parentCategoryId = category.parent_category_id;
-			console.log(category);
 
 			// Fetch items in the current category
 			const itemsRes = await fetch(`/api/items?category_id=${categoryId}`);
@@ -50,12 +50,11 @@
 		}
 	}
 
-	// React to changes in the route ID
 	let unsubscribe;
 	onMount(() => {
 		unsubscribe = page.subscribe((p) => {
-			categoryId = p.params.id; // Update categoryId when the route changes
-			fetchCategoryData(); // Fetch data for the new category
+			categoryId = p.params.id; 
+			fetchCategoryData(); 
 		});
 	});
 
@@ -67,76 +66,11 @@
 <!-- top bar -->
 
 <div class="flex h-screen bg-primary-bg">
-	<!-- Sidebar -->
-	<!-- <aside class="p-4 w-64 bg-gray-100 border-r">
-		<div class="mb-4"></div>
-		<h2 class="mb-4 text-lg font-bold">Diğer Kategoriler</h2>
-		<ul class="space-y-2">
-			{#each siblingCategories as sibling}
-				<li>
-					<a
-						href={`/category/${sibling._id}`}
-						class="px-4 py-2 font-medium text-gray-700 rounded cursor-pointer hover:bg-gray-200"
-						class:selected={categoryId === sibling._id}
-					>
-						{sibling.name[$language]}
-					</a>
-				</li>
-			{/each}
-		</ul>
-	</aside> -->
+	
 
 	<div class="flex-1">
-		<nav class="relative w-full shadow-lg">
-			<div class="flex justify-between items-center">
-				<div class="flex gap-3 items-center px-3">
-					<span class="p-2 rounded-full bg-primary"
-						><img
-							src="/icons/home.svg"
-							class="w-4 hover:cursor-pointer hover:drop-shadow-md"
-							alt="home"
-						/></span
-					>
-					<span class="p-2 rounded-full bg-primary"
-						><img
-							src="/icons/share.svg"
-							class="w-4 hover:cursor-pointer hover:drop-shadow-md"
-							alt="share"
-						/></span
-					>
-					<div class="relative p-2 rounded-full group bg-primary hover:cursor-pointer">
-						<img
-							src="/icons/language.svg"
-							class="w-4 hover:cursor-pointer hover:drop-shadow-md"
-							alt="language"
-						/>
-						<div
-							class="hidden absolute left-0 mt-2 bg-white rounded border shadow-md group-hover:block"
-						>
-							<ul>
-								<li
-									class="px-4 py-2 cursor-pointer hover:bg-gray-200"
-									on:click={() => language.set('en')}
-								>
-									English
-								</li>
-								<li
-									class="px-4 py-2 cursor-pointer hover:bg-gray-200"
-									on:click={() => language.set('tr')}
-								>
-									Türkçe
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div><img src="/images/bharat_crop.png" alt="logo" /></div>
-				<div class="p-2 rounded-l-lg bg-primary hover:cursor-pointer">
-					<img src="/icons/left_arrow.svg" class="w-4" alt="" />
-				</div>
-			</div>
-		</nav>
-		<div></div>
+		<TopBar />
+	
 
 		<!-- Content -->
 
@@ -153,12 +87,12 @@
 					<div class="py-4 w-full">
 						<ul class="grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-4">
 							{#each items as item}
-								<ItemCard {item}  />
+								<ItemCard item={item} type="item"  />
 							{/each}
 						</ul>
 					</div>
 				{:else}
-					<div>Nothing to see :3</div>
+					<div>Nothing Yet</div>
 				{/if}
 			</div>
 		</main>

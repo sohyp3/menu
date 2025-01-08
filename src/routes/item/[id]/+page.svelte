@@ -3,58 +3,39 @@
 	import { page } from '$app/stores';
 	import { browser } from '$app/environment';
 
-    import ItemCard from '$lib/components/ItemCard.svelte';
+	import ItemCard from '$lib/components/ItemCard.svelte';
 	import BreadCrumbs from '$lib/components/BreadCrumbs.svelte';
 
+	import { language } from '$lib/stores/language.js';
+	import { categories } from '$lib/stores/categories';
+	import TopBar from '$lib/components/TopBar.svelte';
 
-	let categoryId;
-	let parentCategoryId;
-	let items = [];
-	let siblingCategories = [];
-	let category = {};
-	let loading = true;
+	let item_id;
+	let category = null;
+	let item = {};
+	let loading = $state(true);
 
-	let language = 'en';
-	if (browser) {
-		language = localStorage.getItem('language') || 'en';
-	}
-
-	function toggleLanguage() {
-		language = language === 'en' ? 'tr' : 'en';
-		if (browser) {
-			localStorage.setItem('language', language);
-		}
-	}
 	async function fetchCategoryData() {
 		try {
-			// Fetch the current category details to get the parent_category_id
-			const categoryRes = await fetch(`/api/categories/${categoryId}`);
+			const itemRes = await fetch(`/api/items/${item_id}`);
+			if (!itemRes.ok) throw new Error('Failed to fetch category');
+			item = await itemRes.json();
+
+			const categoryRes = await fetch(`/api/categories/${item.category_id}`);
 			if (!categoryRes.ok) throw new Error('Failed to fetch category');
 			category = await categoryRes.json();
-			parentCategoryId = category.parent_category_id;
-			console.log(category);
 
-			// Fetch items in the current category
-			const itemsRes = await fetch(`/api/items?category_id=${categoryId}`);
-			if (!itemsRes.ok) throw new Error('Failed to fetch items');
-			items = await itemsRes.json();
-
-			// Fetch sibling categories in the same parent category
-			const siblingsRes = await fetch(`/api/categories?parent_category_id=${parentCategoryId}`);
-			if (!siblingsRes.ok) throw new Error('Failed to fetch sibling categories');
-			siblingCategories = await siblingsRes.json();
 			loading = false;
 		} catch (error) {
 			console.error(error);
 		}
 	}
 
-	// React to changes in the route ID
 	let unsubscribe;
 	onMount(() => {
 		unsubscribe = page.subscribe((p) => {
-			categoryId = p.params.id; // Update categoryId when the route changes
-			fetchCategoryData(); // Fetch data for the new category
+			item_id = p.params.id;
+			fetchCategoryData();
 		});
 	});
 
@@ -66,109 +47,80 @@
 <!-- top bar -->
 
 <div class="flex h-screen bg-primary-bg">
-	<!-- Sidebar -->
-	<aside class="p-4 w-64 bg-gray-100 border-r">
-		<div class="mb-4">
-			<button
-				class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
-				on:click={toggleLanguage}
-			>
-				{language === 'tr' ? 'İngilizceye Geç' : 'Türkçeye Geç'}
-			</button>
-		</div>
-		<h2 class="mb-4 text-lg font-bold">Diğer Kategoriler</h2>
-		<ul class="space-y-2">
-			{#each siblingCategories as sibling}
-				<li>
-					<a
-						href={`/category/${sibling._id}`}
-						class="px-4 py-2 font-medium text-gray-700 rounded cursor-pointer hover:bg-gray-200"
-						class:selected={categoryId === sibling._id}
-					>
-						{sibling.name[language]}
-					</a>
-				</li>
-			{/each}
-		</ul>
-	</aside>
-
 	<div class="flex-1">
-		<nav class="relative w-full shadow-lg">
-			<div class="flex justify-between items-center">
-				<div class="flex gap-3 items-center px-3">
-					<span class="p-2 rounded-full bg-primary"
-						><img
-							src="/icons/home.svg"
-							class="w-4 hover:cursor-pointer hover:drop-shadow-md"
-							alt="home"
-						/></span
-					>
-					<span class="p-2 rounded-full bg-primary"
-						><img
-							src="/icons/share.svg"
-							class="w-4 hover:cursor-pointer hover:drop-shadow-md"
-							alt="share"
-						/></span
-					>
-					<div class="relative p-2 rounded-full bg-primary group hover:cursor-pointer">
-						<img
-							src="/icons/language.svg"
-							class="w-4 hover:cursor-pointer hover:drop-shadow-md"
-							alt="language"
-						/>
-						<div
-							class="hidden absolute left-0 mt-2 bg-white rounded border shadow-md group-hover:block"
-						>
-							<ul>
-								<li
-									class="px-4 py-2 cursor-pointer hover:bg-gray-200"
-									on:click={() => toggleLanguage('en')}
-								>
-									English
-								</li>
-								<li
-									class="px-4 py-2 cursor-pointer hover:bg-gray-200"
-									on:click={() => toggleLanguage('tr')}
-								>
-									Türkçe
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div><img src="/images/bharat_crop.png" alt="logo" /></div>
-				<div class="p-2 rounded-l-lg bg-primary hover:cursor-pointer">
-					<img src="/icons/left_arrow.svg" class="w-4" alt="" />
-				</div>
-			</div>
-		</nav>
-		<div></div>
+		<TopBar />
 
 		<!-- Content -->
 
 		<main class="flex overflow-y-auto flex-col gap-4 justify-center items-center p-6 text-center">
-			<div class="max-w-7xl">
-
+			<div class="w-[960px]">
 				{#if loading}
 					<h2>loading</h2>
 				{:else}
-				<BreadCrumbs {category} {language} />
-					<h2 class="py-4 mb-4 text-3xl font-bold">{category.name[language]}</h2>
-				{/if}
+					<BreadCrumbs {category} {item} />
+					<img src={item.image} alt="image" />
 
-				{#if items.length > 0}
-					<div class="py-4 w-full">
-						<ul class="grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-4">
-							{#each items as item}
-                                <ItemCard {item} {language} />
-								
-							{/each}
-						</ul>
+					<div class="flex justify-center py-8">
+						<div class="w-40 divider">
+							<div class="triangle"></div>
+							<div class="border-line"></div>
+							<h2 class="font-bold">{item.name[$language]}</h2>
+							<h2 class="font-bold">{item.price} TL</h2>
+
+							<div class="border-line"></div>
+
+							<div class="triangle-bottom"></div>
+						</div>
 					</div>
-				{:else}
-					<div>Nothing to see :3</div>
+
+					<div>
+						{#if item.desc && item.desc.length > 0}
+						<h1> {item.desc[$language]} </h1>
+						{/if}
+						{#if item.alergies && item.alergies.length > 0}
+						<h1>{item.alergies[$language]}</h1>
+
+						{/if}
+					</div>
 				{/if}
 			</div>
 		</main>
 	</div>
 </div>
+
+<style>
+	.divider {
+		text-align: center;
+		position: relative;
+		margin: 20px 0;
+	}
+
+	.triangle {
+		width: 0;
+		height: 0;
+		border-left: 10px solid transparent;
+		border-right: 10px solid transparent;
+		border-bottom: 10px solid #819280; /* Same color as the border */
+		margin: 0 auto;
+		position: relative;
+	}
+
+	.border-line {
+		border-top: 1px solid #819280; /* Top border */
+		border-bottom: 1px solid #819280; /* Bottom border */
+		margin: 0 auto;
+		width: 90%; /* Adjust width as needed */
+		position: relative;
+		top: -1px; /* Adjust to connect with triangle */
+	}
+	.triangle-bottom {
+		width: 0;
+		height: 0;
+		border-left: 10px solid transparent;
+		border-right: 10px solid transparent;
+		border-top: 10px solid #819280; /* Same color as the border */
+		margin: 0 auto;
+		position: relative;
+		top: -1px; /* Adjust to connect with the bottom border */
+	}
+</style>

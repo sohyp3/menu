@@ -31,7 +31,7 @@
 			</div>
 		</div>
 	{/if}
-	<div class="flex-1" id="main" class:shifted={isSidebarOpen}>
+	<div class="flex-1 bg-primary-bg" id="main" class:shifted={isSidebarOpen}>
 		{@render children()}
 	</div>
 </div>

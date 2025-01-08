@@ -8,7 +8,7 @@
 </script>
 
 <div>
-	<div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+	<div class="fixed top-1/2 left-1/2 z-30 transform -translate-x-1/2 -translate-y-1/2">
 		<img src="/images/logo.jpg" class="rounded-full" alt="logo" />
 	</div>
 	<!-- <span class="fixed top-1 left-1 z-30">
@@ -18,15 +18,15 @@
 
 	<img
 		src="/images/bg.jpg"
-		class="object-cover overflow-hidden fixed w-screen h-screen bg-center -z-10"
+		class="object-cover overflow-hidden fixed z-10 w-screen h-screen bg-center"
 		alt=""
 	/>
-	<div class="flex flex-col gap-24 justify-center items-center h-screen align-middle">
+	<div class="flex z-30 flex-col gap-24 justify-center items-center h-screen align-middle">
 		<div class="flex gap-56">
-			<div class="clip-hexagon">
-				<img class="object-cover h-56" src="/images/home_bg_garden.jpg" alt="img" />
+			<div class="z-30 clip-hexagon">
+				<img class="object-cover z-30 h-56"  src="/images/home_bg_garden.jpg" alt="img" />
 			</div>
-			<div class="clip-hexagon">
+			<div class="z-30 clip-hexagon">
 				<img class="object-cover h-56" src="/images/home_bg_garden.jpg" alt="img" />
 			</div>
 		</div>

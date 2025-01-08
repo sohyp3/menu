@@ -1,28 +1,35 @@
 <script>
 	import { language } from '$lib/stores/language.js';
-	let { item } = $props();
+	let { item, type } = $props();
+	let goWhere = null;
+	if (type == 'category') {
+		goWhere = '/category/' + item._id;
+	} else if (type == 'item') {
+		goWhere = '/item/' + item._id;
+	}
 </script>
 
-<div
-	class="w-36 rounded-md shadow transition-shadow duration-200 ease-in-out hover:cursor-pointer hover:shadow-lg md:w-44 lg:w-56"
->
-	<div class="h-40 rounded-t-lg">
-		{#if item.image && item.image.length > 0}
-			<img
-				class="object-cover m-0 w-full h-full rounded-t-lg"
-				src={item.image}
-				alt="{item.name[$language]} image"
-			/>
-		{/if}
-	</div>
-	<div class="flex flex-col gap-1 py-2 text-white rounded-b-lg bg-primary">
-		<h1>{item.name[$language]}</h1>
-		{#if item.price}
-			<h1 class="text-lg font-bold">{item.price} TL</h1>
-		{/if}
-	</div>
+<a href={goWhere}>
+	<div
+		class="w-36 rounded-md shadow transition-shadow duration-200 ease-in-out hover:cursor-pointer hover:shadow-lg md:w-44 lg:w-56"
+	>
+		<div class="h-40 rounded-t-lg">
+			{#if item.image && item.image.length > 0}
+				<img
+					class="object-cover m-0 w-full h-full rounded-t-lg"
+					src={item.image}
+					alt="{item.name[$language]} image"
+				/>
+			{/if}
+		</div>
+		<div class="flex flex-col gap-1 py-2 text-white rounded-b-lg bg-primary">
+			<h1>{item.name[$language]}</h1>
+			{#if item.price}
+				<h1 class="text-lg font-bold">{item.price} TL</h1>
+			{/if}
+		</div>
 
-	<!-- {#if item.allergy && item.allergy.length > 0}
+		<!-- {#if item.allergy && item.allergy.length > 0}
         <div class="mt-2 text-sm text-red-500">
             Alerjenler: {#each item.allergy as allergen, i}{allergen[
                     language
@@ -30,4 +37,5 @@
                 {/if}{/each}
         </div>
     {/if} -->
-</div>
+	</div>
+</a>
