@@ -53,12 +53,12 @@
 		<!-- Content -->
 
 		<main class="flex overflow-y-auto flex-col gap-4 justify-center items-center p-6 text-center">
-			<div class="w-[960px]">
+			<div class="lg:w-[960px]">
 				{#if loading}
 					<h2>loading</h2>
 				{:else}
 					<BreadCrumbs {category} {item} />
-					<img src={item.image} alt="image" />
+					<img src={item.image} alt="item" />
 
 					<div class="flex justify-center py-8">
 						<div class="w-40 divider">
