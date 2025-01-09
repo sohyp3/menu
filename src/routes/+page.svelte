@@ -16,8 +16,8 @@
 	</span>
 
 	<img
-		src="/images/bg.jpg"
-		class="object-cover overflow-hidden fixed z-10 w-screen h-screen bg-center"
+		src="/images/COVER MENU.jpg"
+		class="object-cover overflow-hidden fixed z-10 w-screen h-screen bg-center opacity-35"
 		alt=""
 	/>
 	<div class="flex z-30 flex-col gap-24 justify-end items-center h-screen align-middle md:justify-center">
