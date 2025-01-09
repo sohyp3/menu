@@ -46,7 +46,7 @@
 				</div>
 			</div>
 		</div>
-		<div> <a href="/"> <img src="/images/bharat_crop.png" alt="logo" /> </a></div>
+		<div> <a href="/"> <img class="p-2 w-16" src="/images/logo.png" alt="logo" /> </a></div>
 		<div on:click={()=> history.back()} class="p-2 rounded-l-lg bg-primary hover:cursor-pointer">
 			 <img src="/icons/left_arrow.svg" class="w-4 filter hue-rotate-180 invert saturate-200 sepia" alt="goback" />
 		</div>

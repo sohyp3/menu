@@ -9,7 +9,7 @@
 
 <div>
 	<div class="fixed top-1/2 left-1/2 z-30 transform -translate-x-1/2 -translate-y-1/2">
-		<img src="/images/logo.jpg" class="rounded-full" alt="logo" />
+		<img src="/images/logo.png" class="w-48 rounded-full" alt="logo" />
 	</div>
 	<span class="fixed top-1 left-1 z-30">
 	<!-- <button></button> -->
