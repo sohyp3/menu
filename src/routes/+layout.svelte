@@ -3,35 +3,38 @@
 	import '../app.css';
 	import { page } from '$app/stores';
 	import { language } from '$lib/stores/language.js';
+	import { isSidebarOpen } from '$lib/sidebarState.svelte.js';
+	import { onMount } from 'svelte';
 
 	let { children } = $props();
 	let isHomePage = $derived($page.url.pathname === '/');
 
-	let isSidebarOpen = $state(false);
-
-	// Function to toggle sidebar
 	function toggleSidebar() {
-		isSidebarOpen = !isSidebarOpen;
+		isSidebarOpen.value = !isSidebarOpen.value
 	}
 
 	const translations = {
-		en: { open: 'Open The Menu'},
-		tr: { open:"Menuyu Aç"},
+		en: { open: 'Open The Menu' },
+		tr: { open: 'Menuyu Aç' }
 	};
 </script>
 
 <div class="flex h-screen">
 	{#if !isHomePage}
 		<div class="relative">
-			<button class="absolute left-0 top-20 p-2 text-white rounded-r-full text-nowrap w-fit bg-primary" on:click={toggleSidebar}>&#9776; {translations[$language].open}</button>
+			<button
+				class="absolute left-0 top-20 p-2 text-white rounded-r-full w-fit text-nowrap bg-primary"
+				on:click={toggleSidebar}>&#9776; {translations[$language].open}</button
+			>
 
-			<div id="sidebar" class="relative sidebar" class:open={isSidebarOpen}>
-				<button class="absolute -top-2 right-2 p-3 text-3xl" on:click={toggleSidebar}>&rarr;</button>
+			<div id="sidebar" class="relative sidebar" class:open={isSidebarOpen.value}>
+				<button class="absolute -top-2 right-2 p-3 text-3xl" on:click={toggleSidebar}>&rarr;</button
+				>
 				<SideBar />
 			</div>
 		</div>
 	{/if}
-	<div class="flex-1 bg-primary-bg" id="main" class:shifted={isSidebarOpen}>
+	<div class="flex-1 bg-primary-bg" id="main" class:shifted={isSidebarOpen.value}>
 		{@render children()}
 	</div>
 </div>
@@ -46,7 +49,7 @@
 		position: fixed;
 		top: 0;
 		left: 0;
-		background-color: #1A505E;
+		background-color: #1a505e;
 		color: white;
 		overflow-x: hidden;
 		transition: 0.5s;
@@ -59,7 +62,6 @@
 	#main {
 		transition: margin-left 0.5s;
 	}
-
 
 	/* Open the sidebar */
 	.sidebar.open {

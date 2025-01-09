@@ -1,17 +1,26 @@
 <script>
-    import { language } from '$lib/stores/language.js';
-</script>
+	import { language } from '$lib/stores/language.js';
+	import { isSidebarOpen } from '$lib/sidebarState.svelte.js';
 
+	function goHome() {
+		if(isSidebarOpen.value){
+		isSidebarOpen.value = false;
+		}
+		window.location.href = '/';
+	}
+</script>
 
 <nav class="relative w-full shadow-lg">
 	<div class="flex justify-between items-center">
 		<div class="flex gap-3 items-center px-3">
-			<span class="p-2 rounded-full bg-primary"
-				> <a href="/"> <img
-					src="/icons/home.svg"
-					class="w-4 filter hue-rotate-180 invert saturate-200 sepia hover:cursor-pointer hover:drop-shadow-md"
-					alt="home"
-				/></a></span
+			<span class="p-2 rounded-full bg-primary">
+				<button on:click={goHome}>
+					<img
+						src="/icons/home.svg"
+						class="w-4 filter hue-rotate-180 invert saturate-200 sepia hover:cursor-pointer hover:drop-shadow-md"
+						alt="home"
+					/></button
+				></span
 			>
 			<!-- <span class="p-2 rounded-full bg-primary"
 				><img
@@ -46,9 +55,13 @@
 				</div>
 			</div>
 		</div>
-		<div> <a href="/"> <img class="p-2 w-16" src="/images/logo.png" alt="logo" /> </a></div>
-		<div on:click={()=> history.back()} class="p-2 rounded-l-lg bg-primary hover:cursor-pointer">
-			 <img src="/icons/left_arrow.svg" class="w-4 filter hue-rotate-180 invert saturate-200 sepia" alt="goback" />
+		<div><a href="/"> <img class="p-2 w-16" src="/images/logo.png" alt="logo" /> </a></div>
+		<div on:click={() => history.back()} class="p-2 rounded-l-lg bg-primary hover:cursor-pointer">
+			<img
+				src="/icons/left_arrow.svg"
+				class="w-4 filter hue-rotate-180 invert saturate-200 sepia"
+				alt="goback"
+			/>
 		</div>
 	</div>
 </nav>
