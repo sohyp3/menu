@@ -100,14 +100,14 @@
 		height: 0;
 		border-left: 10px solid transparent;
 		border-right: 10px solid transparent;
-		border-bottom: 10px solid #819280; /* Same color as the border */
+		border-bottom: 10px solid #1A505E; /* Same color as the border */
 		margin: 0 auto;
 		position: relative;
 	}
 
 	.border-line {
-		border-top: 1px solid #819280; /* Top border */
-		border-bottom: 1px solid #819280; /* Bottom border */
+		border-top: 1px solid #1A505E; /* Top border */
+		border-bottom: 1px solid #1A505E; /* Bottom border */
 		margin: 0 auto;
 		width: 90%; /* Adjust width as needed */
 		position: relative;
@@ -118,7 +118,7 @@
 		height: 0;
 		border-left: 10px solid transparent;
 		border-right: 10px solid transparent;
-		border-top: 10px solid #819280; /* Same color as the border */
+		border-top: 10px solid #1A505E; /* Same color as the border */
 		margin: 0 auto;
 		position: relative;
 		top: -1px; /* Adjust to connect with the bottom border */

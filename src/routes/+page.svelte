@@ -30,13 +30,13 @@
 			</div>
 		</div>
 
-		<div class="flex z-30 gap-9 pb-40 text-3xl text-black md:pb-0">
+		<div class="flex z-30 gap-9 pb-40 md:text-3xl text-primary md:pb-0">
 			<a href="/parent_category/2">
 				<div class="flex flex-col items-center">
 					<div
-						class="rounded-full bg-primary p-8 transition-colors duration-200 hover:cursor-pointer hover:bg-[#A7C0A6]"
+						class="rounded-full bg-primary p-8 transition-colors duration-200 hover:cursor-pointer hover:bg-[#CCDFF2]"
 					>
-						<img src="/icons/drink.svg" alt="drink" class="w-12" />
+						<img src="/icons/drink.svg" alt="drink" class="w-6 filter hue-rotate-180 invert saturate-200 sepia md:w-12" />
 					</div>
 					<h1>{translations[$language].drink}</h1>
 				</div>
@@ -45,9 +45,9 @@
 			<a href="/parent_category/1">
 				<div class="flex flex-col items-center">
 					<div
-						class="rounded-full bg-primary p-8 transition-colors duration-200 hover:cursor-pointer hover:bg-[#A7C0A6]"
+						class="rounded-full bg-primary p-8 transition-colors duration-200 hover:cursor-pointer hover:bg-[#CCDFF2]"
 					>
-						<img src="/icons/food.svg" alt="food" class="w-12" />
+						<img src="/icons/food.svg" alt="food" class="w-6 filter hue-rotate-180 invert saturate-200 sepia md:w-12" />
 					</div>
 					<h1>{translations[$language].food}</h1>
 				</div>
@@ -56,9 +56,9 @@
 			<a href="/parent_category/3">
 				<div class="flex flex-col items-center">
 					<div
-						class="rounded-full bg-primary p-8 transition-colors duration-200 hover:cursor-pointer hover:bg-[#A7C0A6]"
+						class="rounded-full bg-primary p-8 transition-colors duration-200 hover:cursor-pointer hover:bg-[#CCDFF2]"
 					>
-						<img src="/icons/special.svg" alt="Special" class="w-12" />
+						<img src="/icons/special.svg" alt="Special" class="w-6 filter hue-rotate-180 invert saturate-200 sepia md:w-12" />
 					</div>
 					<h1>{translations[$language].special}</h1>
 				</div>

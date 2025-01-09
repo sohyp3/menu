@@ -12,7 +12,7 @@
 	<!-- <h1>{$language}</h1> -->
 	{#each categoriesList as category}
 
-	<div class="flex gap-1 justify-center items-center text-white border-b border-white">
+	<div class="flex gap-1 justify-center items-center text-white border-b border-white transition-shadow duration-200 hover:shadow-2xl">
 		{#if category.image}
 		<img class="w-10" src={category.image} alt="image" />
 		{/if}

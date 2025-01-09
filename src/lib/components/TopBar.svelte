@@ -9,7 +9,7 @@
 			<span class="p-2 rounded-full bg-primary"
 				> <a href="/"> <img
 					src="/icons/home.svg"
-					class="w-4 hover:cursor-pointer hover:drop-shadow-md"
+					class="w-4 filter hue-rotate-180 invert saturate-200 sepia hover:cursor-pointer hover:drop-shadow-md"
 					alt="home"
 				/></a></span
 			>
@@ -23,7 +23,7 @@
 			<div class="relative p-2 rounded-full group bg-primary hover:cursor-pointer">
 				<img
 					src="/icons/language.svg"
-					class="w-4 hover:cursor-pointer hover:drop-shadow-md"
+					class="w-4 filter hue-rotate-180 invert saturate-200 sepia hover:cursor-pointer hover:drop-shadow-md"
 					alt="language"
 				/>
 				<div
@@ -48,7 +48,7 @@
 		</div>
 		<div> <a href="/"> <img src="/images/bharat_crop.png" alt="logo" /> </a></div>
 		<div on:click={()=> history.back()} class="p-2 rounded-l-lg bg-primary hover:cursor-pointer">
-			 <img src="/icons/left_arrow.svg" class="w-4" alt="goback" />
+			 <img src="/icons/left_arrow.svg" class="w-4 filter hue-rotate-180 invert saturate-200 sepia" alt="goback" />
 		</div>
 	</div>
 </nav>

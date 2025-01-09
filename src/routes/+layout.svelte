@@ -46,7 +46,7 @@
 		position: fixed;
 		top: 0;
 		left: 0;
-		background-color: #819280;
+		background-color: #1A505E;
 		color: white;
 		overflow-x: hidden;
 		transition: 0.5s;
