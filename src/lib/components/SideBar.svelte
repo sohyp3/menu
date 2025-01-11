@@ -2,6 +2,16 @@
 	import { language } from '$lib/stores/language.js';
 	import { categories } from '$lib/stores/categories.js';
 
+	import { isSidebarOpen } from '$lib/sidebarState.svelte.js';
+
+	function goLink(link) {
+		if (isSidebarOpen.value) {
+			isSidebarOpen.value = false;
+		}
+		window.location.href = link;
+	}
+
+
 	let categoriesList = [];
 	categories.subscribe((value) => (categoriesList = value));
 
@@ -17,9 +27,10 @@
 		<img class="w-10" src={category.image} alt="image" />
 		{/if}
 		
-		<a class="p-3 rounded-md" href="/category/{category._id}"
-			>{category.name[$language]}</a
-		>
+		<button class="p-3 rounded-md" on:click	= {() => goLink(`/category/${category._id}`)}>
+		{category.name[$language]}
+		
+		</button>
 		</div>
 	{/each}
 </aside>

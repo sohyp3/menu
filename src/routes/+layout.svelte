@@ -10,32 +10,28 @@
 	let isHomePage = $derived($page.url.pathname === '/');
 
 	function toggleSidebar() {
-		isSidebarOpen.value = !isSidebarOpen.value
+		isSidebarOpen.value = !isSidebarOpen.value;
 	}
 
-	const translations = {
-		en: { open: 'Open The Menu' },
-		tr: { open: 'Menuyu Aç' }
-	};
 </script>
 
 <div class="flex h-screen">
 	{#if !isHomePage}
 		<div class="relative">
-			<button
-				class="absolute left-0 top-20 p-2 text-white rounded-r-full w-fit text-nowrap bg-primary"
-				on:click={toggleSidebar}>&#9776; {translations[$language].open}</button
-			>
-
 			<div id="sidebar" class="relative sidebar" class:open={isSidebarOpen.value}>
-				<button class="absolute -top-2 right-2 p-3 text-3xl" on:click={toggleSidebar}>&rarr;</button
-				>
-				<SideBar />
+				<div id="sidebar" class="relative sidebar" class:open={isSidebarOpen.value}>
+					<button class="absolute -top-2 right-2 p-3 text-3xl" on:click={toggleSidebar}
+						>&rarr;</button
+					>
+					<SideBar />
+				</div>
 			</div>
 		</div>
 	{/if}
 	<div class="flex-1 bg-primary-bg" id="main" class:shifted={isSidebarOpen.value}>
-		{@render children()}
+		<div class="flex flex-col gap3">
+			{@render children()}
+		</div>
 	</div>
 </div>
 

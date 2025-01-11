@@ -9,6 +9,7 @@
 	import { language } from '$lib/stores/language.js';
 	import { categories } from '$lib/stores/categories';
 	import TopBar from '$lib/components/TopBar.svelte';
+	import MenuBar from '$lib/components/MenuBar.svelte';
 
 	let item_id;
 	let category = null;
@@ -49,6 +50,7 @@
 <div class="flex h-screen bg-primary-bg">
 	<div class="flex-1">
 		<TopBar />
+		<MenuBar />
 
 		<!-- Content -->
 
@@ -75,11 +77,10 @@
 
 					<div>
 						{#if item.desc && item.desc.length > 0}
-						<h1> {item.desc[$language]} </h1>
+							<h1>{item.desc[$language]}</h1>
 						{/if}
 						{#if item.alergies && item.alergies.length > 0}
-						<h1>{item.alergies[$language]}</h1>
-
+							<h1>{item.alergies[$language]}</h1>
 						{/if}
 					</div>
 				{/if}
@@ -100,14 +101,14 @@
 		height: 0;
 		border-left: 10px solid transparent;
 		border-right: 10px solid transparent;
-		border-bottom: 10px solid #1A505E; /* Same color as the border */
+		border-bottom: 10px solid #1a505e; /* Same color as the border */
 		margin: 0 auto;
 		position: relative;
 	}
 
 	.border-line {
-		border-top: 1px solid #1A505E; /* Top border */
-		border-bottom: 1px solid #1A505E; /* Bottom border */
+		border-top: 1px solid #1a505e; /* Top border */
+		border-bottom: 1px solid #1a505e; /* Bottom border */
 		margin: 0 auto;
 		width: 90%; /* Adjust width as needed */
 		position: relative;
@@ -118,7 +119,7 @@
 		height: 0;
 		border-left: 10px solid transparent;
 		border-right: 10px solid transparent;
-		border-top: 10px solid #1A505E; /* Same color as the border */
+		border-top: 10px solid #1a505e; /* Same color as the border */
 		margin: 0 auto;
 		position: relative;
 		top: -1px; /* Adjust to connect with the bottom border */

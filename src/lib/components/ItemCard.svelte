@@ -11,7 +11,7 @@
 
 <a href={goWhere}>
 	<div
-		class="w-36 rounded-md shadow transition-shadow duration-200 ease-in-out hover:cursor-pointer hover:shadow-lg md:w-44 lg:w-56"
+		class="w-full rounded-md shadow transition-shadow duration-200 ease-in-out hover:cursor-pointer hover:shadow-lg"
 	>
 		<div class="h-40 rounded-t-lg">
 			{#if item.image && item.image.length > 0}
