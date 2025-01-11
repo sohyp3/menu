@@ -1,12 +1,17 @@
 <script>
 	import { language } from '$lib/stores/language.js';
 	import { isSidebarOpen } from '$lib/sidebarState.svelte.js';
+	import SideBar from './SideBar.svelte';
 
 	function goHome() {
 		if (isSidebarOpen.value) {
 			isSidebarOpen.value = false;
 		}
 		window.location.href = '/';
+	}
+	function goBack() {
+		isSidebarOpen.value = false;
+		window.history.back();
 	}
 </script>
 
@@ -31,45 +36,37 @@
 			> -->
 			<div class="relative px-2 rounded-full group bg-primary-bg hover:cursor-pointer">
 				<div class="flex justify-center items-center py-1">
-					<span class="py-1 text-xs text-primary"
-						>{$language.toUpperCase()}</span
-					>
+					<span class="py-1 text-xs text-primary">{$language.toUpperCase()}</span>
 				</div>
 				<!-- <img
 					src="/icons/language.svg"
 					class="w-4 filter hue-rotate-180 invert saturate-200 sepia hover:cursor-pointer hover:drop-shadow-md"
 					alt="language"
 				/> -->
-				<div
-					class="hidden absolute -left-[1px] pt-2 text-white group-hover:block"
-				>
+				<div class="absolute -left-[1px] hidden pt-2 text-white group-hover:block">
 					<ul class="flex flex-col gap-3 text-xs">
 						<button
-							class="px-2 py-2 rounded-full cursor-pointer hover:text-primary bg-primary hover:bg-gray-200"
+							class="px-2 py-2 rounded-full cursor-pointer bg-primary hover:bg-gray-200 hover:text-primary"
 							on:click={() => language.set('en')}
 						>
-						EN	
+							EN
 						</button>
 						<button
-							class="px-2 py-2 rounded-full cursor-pointer bg-primary hover:text-primary hover:bg-gray-200"
+							class="px-2 py-2 rounded-full cursor-pointer bg-primary hover:bg-gray-200 hover:text-primary"
 							on:click={() => language.set('tr')}
 						>
-						TR	
+							TR
 						</button>
 					</ul>
 				</div>
 			</div>
 		</div>
 		<div class="mx-auto text-center">
-			<a href="/"> <img class="p-2 w-16" src="/images/logo.png" alt="logo" /> </a>
+			<button on:click={goHome}> <img class="w-16" src="/images/logo_invz.svg" alt="logo" /> </button>
 		</div>
-		<div on:click={() => history.back()} class="flex justify-end">
+		<div on:click={goBack} class="flex justify-end">
 			<div class="p-2 w-8 rounded-l-lg hovercursor-pointer bg-primary-bg">
-				<img
-					src="/icons/left_arrow.svg"
-					class="w-4 filter"
-					alt="goback"
-				/>
+				<img src="/icons/left_arrow.svg" class="w-4 filter" alt="goback" />
 			</div>
 		</div>
 	</div>
