@@ -61,7 +61,11 @@
 				<Loading />
 				{:else}
 					<BreadCrumbs {category} {item} />
+					{#if item.image && item.image != ''}
 					<img src={item.image} alt="item" />
+					{:else}
+					<img src="/images/place_holder.png" alt="placeholder">
+					{/if}
 
 					<div class="flex justify-center py-8">
 						<div class="w-40 divider">
@@ -77,10 +81,10 @@
 					</div>
 
 					<div>
-						{#if item.desc && item.desc.length > 0}
+						{#if item.desc[$language] }
 							<h1>{item.desc[$language]}</h1>
 						{/if}
-						{#if item.alergies && item.alergies.length > 0}
+						{#if item.alergies }
 							<h1>{item.alergies[$language]}</h1>
 						{/if}
 					</div>

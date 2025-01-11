@@ -20,6 +20,13 @@
 					src={item.image}
 					alt="{item.name[$language]} image"
 				/>
+				{:else}
+				<img
+					class="object-cover m-0 w-full h-full rounded-t-lg"
+					src="/images/place_holder.png"
+					alt="{item.name[$language]} image"
+				/>
+
 			{/if}
 		</div>
 		<div class="flex flex-col gap-1 py-2 text-white rounded-b-lg bg-primary">
