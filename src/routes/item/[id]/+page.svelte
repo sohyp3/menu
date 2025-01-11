@@ -10,6 +10,7 @@
 	import { categories } from '$lib/stores/categories';
 	import TopBar from '$lib/components/TopBar.svelte';
 	import MenuBar from '$lib/components/MenuBar.svelte';
+	import Loading from '$lib/components/Loading.svelte';
 
 	let item_id;
 	let category = null;
@@ -57,7 +58,7 @@
 		<main class="flex overflow-y-auto flex-col gap-4 justify-center items-center p-6 text-center">
 			<div class="lg:w-[960px]">
 				{#if loading}
-					<h2>loading</h2>
+				<Loading />
 				{:else}
 					<BreadCrumbs {category} {item} />
 					<img src={item.image} alt="item" />

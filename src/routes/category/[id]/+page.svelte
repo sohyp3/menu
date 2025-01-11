@@ -11,6 +11,7 @@
 
 	import { categories } from '$lib/stores/categories';
 	import MenuBar from '$lib/components/MenuBar.svelte';
+	import Loading from '$lib/components/Loading.svelte';
 
 	let categoryId;
 	let parentCategoryId;
@@ -74,7 +75,7 @@
 		<main class="flex overflow-y-auto flex-col gap-4 justify-center items-center p-6 text-center">
 			<div class="w-full lg:w-[960px]">
 				{#if loading}
-					<h2>loading</h2>
+				<Loading />
 				{:else}
 					<BreadCrumbs {category} />
 					<h2 class="py-4 mb-4 text-3xl font-bold">{category.name[$language]}</h2>
