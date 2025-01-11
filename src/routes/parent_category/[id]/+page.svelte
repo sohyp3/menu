@@ -9,6 +9,8 @@
 
 	import { language } from '$lib/stores/language.js';
 	import { categories } from '$lib/stores/categories';
+	import { parent_category_store } from '$lib/stores/parent_category';
+	
 	import TopBar from '$lib/components/TopBar.svelte';
 	import MenuBar from '$lib/components/MenuBar.svelte';
 	import Loading from '$lib/components/Loading.svelte';
@@ -31,6 +33,7 @@
 			if (!p_category.ok) throw new Error('Failed to fetch category');
 
 			parent_category = await p_category.json();
+			parent_category_store.set(parent_category.name);
 
 			loading = false;
 		} catch (error) {

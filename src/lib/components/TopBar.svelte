@@ -10,14 +10,14 @@
 	}
 </script>
 
-<nav class="relative w-full shadow-lg">
+<nav class="relative w-full shadow-lg bg-primary">
 	<div class="grid grid-cols-3 items-center">
 		<div class="flex gap-3 items-center px-3">
-			<span class="p-2 rounded-full bg-primary">
+			<span class="p-2 rounded-full bg-primary-bg">
 				<a on:click={goHome}>
 					<img
 						src="/icons/home.svg"
-						class="w-4 filter hue-rotate-180 invert saturate-200 sepia hover:cursor-pointer hover:drop-shadow-md"
+						class="w-4 filter hue-rotate-180 hover:cursor-pointer hover:drop-shadow-md"
 						alt="home"
 					/></a
 				></span
@@ -29,9 +29,9 @@
 					alt="share"
 				/></span
 			> -->
-			<div class="relative px-2 rounded-full group bg-primary hover:cursor-pointer">
+			<div class="relative px-2 rounded-full group bg-primary-bg hover:cursor-pointer">
 				<div class="flex justify-center items-center py-1">
-					<span class="py-1 text-xs text-white"
+					<span class="py-1 text-xs text-primary"
 						>{$language.toUpperCase()}</span
 					>
 				</div>
@@ -64,10 +64,10 @@
 			<a href="/"> <img class="p-2 w-16" src="/images/logo.png" alt="logo" /> </a>
 		</div>
 		<div on:click={() => history.back()} class="flex justify-end">
-			<div class="p-2 w-8 rounded-l-lg hovercursor-pointer bg-primary">
+			<div class="p-2 w-8 rounded-l-lg hovercursor-pointer bg-primary-bg">
 				<img
 					src="/icons/left_arrow.svg"
-					class="w-4 filter hue-rotate-180 invert saturate-200 sepia"
+					class="w-4 filter"
 					alt="goback"
 				/>
 			</div>

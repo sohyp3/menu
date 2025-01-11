@@ -56,15 +56,15 @@
 		<!-- Content -->
 
 		<main class="flex overflow-y-auto flex-col gap-4 justify-center items-center p-6 text-center">
-			<div class="lg:w-[960px]">
+			<div class=" w-full lg:w-[960px]">
 				{#if loading}
 				<Loading />
 				{:else}
 					<BreadCrumbs {category} {item} />
 					{#if item.image && item.image != ''}
-					<img src={item.image} alt="item" />
+					<img src={item.image} alt="item" class="mx-auto" />
 					{:else}
-					<img src="/images/place_holder.png" alt="placeholder">
+					<img src="/images/place_holder.png" alt="placeholder" class="mx-auto">
 					{/if}
 
 					<div class="flex justify-center py-8">
