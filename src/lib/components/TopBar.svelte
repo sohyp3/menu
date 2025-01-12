@@ -61,8 +61,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="mx-auto text-center">
-			<button on:click={goHome}> <img class="w-16" src="/images/logo_invz.svg" alt="logo" /> </button>
+		<div class="flex justify-center items-center">
+			<button on:click={goHome}> <img class="w-16" src="/images/logo.png" alt="logo" /> </button>
 		</div>
 		<div on:click={goBack} class="flex justify-end">
 			<div class="p-2 w-8 rounded-l-lg hovercursor-pointer bg-primary-bg">
