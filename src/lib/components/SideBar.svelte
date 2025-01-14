@@ -32,19 +32,18 @@
 			</button>
 		</div>
 	{/each}
-	<div class="flex gap-3 justify-evenly w-full">
+	<div class="flex">
 		<a
 			href="https://www.instagram.com/blounge.1/"
-			target="_blank"
-			class="flex gap-1 justify-center items-center w-12 text-white transition-shadow duration-200 hover:shadow-2xl"
-			><img src="/icons/insta.svg" alt="insta" /></a
+			class="flex flex-col gap-1 mx-auto text-xs"
+			> <img class="w-12" src="/icons/insta.svg" alt="insta" />Follow Us</a
+
 		>
 
 		<a
 			href="https://maps.app.goo.gl/1UmT5ZSxxo3hLKBPA"
-			target="_blank"
-			class="flex gap-1 justify-center items-center w-12 text-white transition-shadow duration-200 hover:shadow-2xl"
-			><img src="/icons/maps.svg" alt="insta" /></a
+			class="flex flex-col gap-1 mx-auto text-xs"
+			><img class="w-12" src="/icons/maps.svg" alt="maps" /> Rate Us </a
 		>
 	</div>
 </aside>

@@ -2,8 +2,8 @@
 	import { language } from '$lib/stores/language.js';
 
 	const translations = {
-		en: { food: 'Food',drink:"Drink",special :"special" },
-		tr: { food: 'Yemek',drink:"Içecek",special :"spesial" },
+		en: { food: 'Food',drink:"Drinks",special :"Special" },
+		tr: { food: 'Yemek',drink:"Içecek",special :"Spesial" },
 	};
 </script>
 
@@ -30,13 +30,13 @@
 			</div>
 		</div> -->
 
-		<div class="flex z-30 gap-9 pb-40 md:text-3xl text-primary">
+		<div class="flex z-30 gap-9 pb-40 font-bold md:text-3xl text-primary">
 			<a href="/parent_category/2">
 				<div class="flex flex-col items-center">
 					<div
 						class="rounded-full bg-primary p-8 transition-colors duration-200 hover:cursor-pointer hover:bg-[#CCDFF2]"
 					>
-						<img src="/icons/drink.svg" alt="drink" class="w-10 filter hue-rotate-180 invert saturate-200 sepia md:w-12" />
+						<img src="/icons/drink.svg" alt="drink" class="w-12 filter hue-rotate-180 invert saturate-200 sepia" />
 					</div>
 					<h1>{translations[$language].drink}</h1>
 				</div>
@@ -45,9 +45,9 @@
 			<a href="/parent_category/1">
 				<div class="flex flex-col items-center">
 					<div
-						class="rounded-full bg-primary p-8 transition-colors duration-200 hover:cursor-pointer hover:bg-[#CCDFF2]"
+						class="rounded-full bg-primary p-6 transition-colors duration-200 hover:cursor-pointer hover:bg-[#CCDFF2]"
 					>
-						<img src="/icons/food.svg" alt="food" class="w-10 filter hue-rotate-180 invert saturate-200 sepia md:w-12" />
+						<img src="/icons/food.svg" alt="food" class="w-16 filter hue-rotate-180 invert saturate-200 sepia" />
 					</div>
 					<h1>{translations[$language].food}</h1>
 				</div>
@@ -58,7 +58,7 @@
 					<div
 						class="rounded-full bg-primary p-8 transition-colors duration-200 hover:cursor-pointer hover:bg-[#CCDFF2]"
 					>
-						<img src="/icons/special.svg" alt="Special" class="w-10 filter hue-rotate-180 invert saturate-200 sepia md:w-12" />
+						<img src="/icons/special.svg" alt="Special" class="w-12 filter hue-rotate-180 invert saturate-200 sepia" />
 					</div>
 					<h1>{translations[$language].special}</h1>
 				</div>
