@@ -7,7 +7,7 @@
 	};
 </script>
 
-<div class="overflow-hidden">
+<div class="overflow-hidden bg-[#CCDFF2] ">
 	<div class="fixed top-1/2 left-1/2 z-30 transform -translate-x-1/2 -translate-y-1/2">
 		<img src="/images/logo.png" class="w-48 rounded-full" alt="logo" />
 	</div>
