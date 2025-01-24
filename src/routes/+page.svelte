@@ -15,7 +15,9 @@
 </script>
 
 {#if $isLoading}
-	<Loading />
+	<div class="flex fixed top-0 left-0 z-50 justify-center items-center w-screen h-screen">
+		<Loading />
+	</div>
 {/if}
 <div class="overflow-hidden">
 	<div class="fixed top-1/2 left-1/2 z-30 transform -translate-x-1/2 -translate-y-1/2">
