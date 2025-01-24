@@ -15,7 +15,7 @@
 	}
 </script>
 
-<nav class="relative w-full shadow-lg bg-primary">
+<nav class="relative w-full shadow-lg h-18 bg-primary">
 	<div class="grid grid-cols-3 items-center">
 		<div class="flex gap-3 items-center px-3">
 			<span class="p-2 rounded-full bg-primary-bg">

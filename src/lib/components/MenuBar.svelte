@@ -4,7 +4,6 @@
 		isSidebarOpen.value = !isSidebarOpen.value;
 	}
 	function goSomewhere(where){
-		console.log("here");
 		isSidebarOpen.value = false
 		window.location.href = '/parent_category/'+where
 

@@ -3,9 +3,9 @@
 	let { item, type } = $props();
 	let goWhere = null;
 	if (type == 'category') {
-		goWhere = '/category/' + item._id;
+		goWhere = '/category/' + item.id;
 	} else if (type == 'item') {
-		goWhere = '/item/' + item._id;
+		goWhere = '/item/' + item.id;
 	}
 </script>
 

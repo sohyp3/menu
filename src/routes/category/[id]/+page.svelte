@@ -13,54 +13,19 @@
 	import MenuBar from '$lib/components/MenuBar.svelte';
 	import Loading from '$lib/components/Loading.svelte';
 
-	let categoryId;
-	let parentCategoryId;
-	let items = [];
-	let siblingCategories = [];
-	let category = {};
-	let loading = true;
+	let {data} = $props()
+	let items = data.items
+	let category = data.category;
+	
+
+
+
+	let loading = $state(false);
 
 	function toggleLanguage(lang) {
 		language.set(lang);
 	}
-	async function fetchCategoryData() {
-		try {
-			// Fetch the current category details to get the parent_category_id
-			const categoryRes = await fetch(`/api/categories/${categoryId}`);
-			if (!categoryRes.ok) throw new Error('Failed to fetch category');
-			category = await categoryRes.json();
-
-			parentCategoryId = category.parent_category_id;
-
-			// Fetch items in the current category
-			const itemsRes = await fetch(`/api/items?category_id=${categoryId}`);
-			if (!itemsRes.ok) throw new Error('Failed to fetch items');
-			items = await itemsRes.json();
-
-			// Fetch sibling categories in the same parent category
-			const siblingsRes = await fetch(`/api/categories?parent_category_id=${parentCategoryId}`);
-			if (!siblingsRes.ok) throw new Error('Failed to fetch sibling categories');
-			siblingCategories = await siblingsRes.json();
-
-			categories.set(siblingCategories);
-
-			loading = false;
-		} catch (error) {
-			console.error(error);
-		}
-	}
-
-	let unsubscribe;
-	onMount(() => {
-		unsubscribe = page.subscribe((p) => {
-			categoryId = p.params.id;
-			fetchCategoryData();
-		});
-	});
-
-	onDestroy(() => {
-		if (unsubscribe) unsubscribe();
-	});
+	
 </script>
 
 <!-- top bar -->

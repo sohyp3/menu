@@ -12,38 +12,11 @@
 	import MenuBar from '$lib/components/MenuBar.svelte';
 	import Loading from '$lib/components/Loading.svelte';
 
-	let item_id;
-	let category = null;
-	let item = {};
-	let loading = $state(true);
+	let loading = $state(false);
+	let { data } = $props();
 
-	async function fetchCategoryData() {
-		try {
-			const itemRes = await fetch(`/api/items/${item_id}`);
-			if (!itemRes.ok) throw new Error('Failed to fetch category');
-			item = await itemRes.json();
-
-			const categoryRes = await fetch(`/api/categories/${item.category_id}`);
-			if (!categoryRes.ok) throw new Error('Failed to fetch category');
-			category = await categoryRes.json();
-
-			loading = false;
-		} catch (error) {
-			console.error(error);
-		}
-	}
-
-	let unsubscribe;
-	onMount(() => {
-		unsubscribe = page.subscribe((p) => {
-			item_id = p.params.id;
-			fetchCategoryData();
-		});
-	});
-
-	onDestroy(() => {
-		if (unsubscribe) unsubscribe();
-	});
+	let item = data.item;
+	let category = data.category;
 </script>
 
 <!-- top bar -->
@@ -58,13 +31,13 @@
 		<main class="flex overflow-y-auto flex-col gap-4 justify-center items-center p-6 text-center">
 			<div class=" w-full lg:w-[960px]">
 				{#if loading}
-				<Loading />
+					<Loading />
 				{:else}
 					<BreadCrumbs {category} {item} />
 					{#if item.image && item.image != ''}
-					<img src={item.image} alt="item" class="mx-auto" />
+						<img src={item.image} alt="item" class="mx-auto" />
 					{:else}
-					<img src="/images/place_holder.png" alt="placeholder" class="mx-auto">
+						<img src="/images/place_holder.png" alt="placeholder" class="mx-auto" />
 					{/if}
 
 					<div class="flex justify-center py-8">
@@ -81,11 +54,8 @@
 					</div>
 
 					<div>
-						{#if item.desc[$language] }
-							<h1>{item.desc[$language]}</h1>
-						{/if}
-						{#if item.alergies }
-							<h1>{item.alergies[$language]}</h1>
+						{#if item.description[$language]}
+							<h1>{item.description[$language]}</h1>
 						{/if}
 					</div>
 				{/if}
