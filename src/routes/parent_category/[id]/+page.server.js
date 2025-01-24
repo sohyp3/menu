@@ -3,6 +3,7 @@ import { categories } from '$lib/stores/categories';
 
 
 import { sql } from "$lib/sql";
+import { isLoading } from '$lib/stores/loading.js';
 
 export async function load({ params }) {
     try {
@@ -24,6 +25,7 @@ export async function load({ params }) {
         parent_category_store.set(parent_category.name);
         categories.set(category);
 
+        isLoading.set(false)
 
 
         return { category, parent_category };

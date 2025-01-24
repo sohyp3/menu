@@ -1,4 +1,5 @@
 import { sql } from "$lib/sql";
+import { isLoading } from "$lib/stores/loading.js";
 
 export async function load({ params }) {
     try {
@@ -32,6 +33,8 @@ export async function load({ params }) {
         category = r_cat[0]
 
         }
+
+        isLoading.set(false)
 
         return { item , category};
     }

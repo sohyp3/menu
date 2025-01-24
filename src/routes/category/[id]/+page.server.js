@@ -1,4 +1,5 @@
 import { sql } from "$lib/sql";
+import { isLoading } from "$lib/stores/loading.js";
 
 export async function load({ params }) {
     try {
@@ -18,6 +19,8 @@ export async function load({ params }) {
         const items = await sql(`SELECT * FROM item WHERE  parent_id = ${id} ORDER BY id ASC `)
 
         let category = r_cat[0]
+        isLoading.set(false)
+
         return { items , category};
 
 

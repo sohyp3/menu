@@ -10,6 +10,7 @@
 	import { language } from '$lib/stores/language.js';
 	import { categories } from '$lib/stores/categories';
 	import { parent_category_store } from '$lib/stores/parent_category';
+	import { isLoading } from '$lib/stores/loading.js';
 	
 	import TopBar from '$lib/components/TopBar.svelte';
 	import MenuBar from '$lib/components/MenuBar.svelte';
@@ -20,6 +21,10 @@
 	let { data } = $props();
 	let cats = data.category
 	categories.set(cats);
+
+	onMount(() => {
+        isLoading.set(false); // Hide loading when page is fully loaded
+    });
 
 
 </script>
@@ -36,7 +41,7 @@
 
 	<main class="flex overflow-y-auto flex-col gap-4 justify-center items-center p-6 text-center">
 		<div class="w-full lg:w-[960px]">
-			{#if loading}
+			{#if $isLoading}
 			<Loading />
 			{:else}
 				<!-- <BreadCrumbs {parent_category} /> -->

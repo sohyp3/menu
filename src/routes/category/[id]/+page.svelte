@@ -10,6 +10,7 @@
 	import TopBar from '$lib/components/TopBar.svelte';
 
 	import { categories } from '$lib/stores/categories';
+	import { isLoading } from '$lib/stores/loading.js';
 	import MenuBar from '$lib/components/MenuBar.svelte';
 	import Loading from '$lib/components/Loading.svelte';
 
@@ -25,6 +26,9 @@
 	function toggleLanguage(lang) {
 		language.set(lang);
 	}
+	onMount(() => {
+        isLoading.set(false); // Hide loading when page is fully loaded
+    });
 	
 </script>
 
@@ -39,7 +43,7 @@
 
 		<main class="flex overflow-y-auto flex-col gap-4 justify-center items-center p-6 text-center">
 			<div class="w-full lg:w-[960px]">
-				{#if loading}
+				{#if $isLoading}
 				<Loading />
 				{:else}
 					<BreadCrumbs {category} />

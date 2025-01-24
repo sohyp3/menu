@@ -8,6 +8,8 @@
 
 	import { language } from '$lib/stores/language.js';
 	import { categories } from '$lib/stores/categories';
+	import { isLoading } from '$lib/stores/loading.js';
+
 	import TopBar from '$lib/components/TopBar.svelte';
 	import MenuBar from '$lib/components/MenuBar.svelte';
 	import Loading from '$lib/components/Loading.svelte';
@@ -17,6 +19,10 @@
 
 	let item = data.item;
 	let category = data.category;
+
+	onMount(() => {
+        isLoading.set(false); // Hide loading when page is fully loaded
+    });
 </script>
 
 <!-- top bar -->
@@ -30,7 +36,7 @@
 
 		<main class="flex overflow-y-auto flex-col gap-4 justify-center items-center p-6 text-center">
 			<div class=" w-full lg:w-[960px]">
-				{#if loading}
+				{#if $isLoading}
 					<Loading />
 				{:else}
 					<BreadCrumbs {category} {item} />
