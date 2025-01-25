@@ -21,6 +21,7 @@
 	let { data } = $props();
 	let cats = data.category
 	categories.set(cats);
+	parent_category_store.set(data.parent_category.name);
 
 	onMount(() => {
         isLoading.set(false); // Hide loading when page is fully loaded
