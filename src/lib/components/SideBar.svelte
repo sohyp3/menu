@@ -24,10 +24,10 @@
 			class="grid grid-cols-3 gap-1 justify-center items-center px-3 py-1 text-white border-b border-white transition-shadow duration-200 hover:shadow-2xl"
 		>
 			{#if category.image}
-				<img class="w-10 rounded-md" src={category.image} alt="image" />
+				<img class="w-10 rounded-md" src={category.image} alt="category_img" />
 			{/if}
 
-			<button class="col-span-2 p-3 rounded-md" on:click={() => goLink(`/category/${category.id}`)}>
+			<button class="{category.image? 'col-span-2': 'col-span-3' } p-3 rounded-md" on:click={() => goLink(`/category/${category.id}`)}>
 				{category.name[$language]}
 			</button>
 		</div>
