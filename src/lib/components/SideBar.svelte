@@ -27,7 +27,7 @@
 				<img class="w-10 rounded-md" src={category.image} alt="category_img" />
 			{/if}
 
-			<button class="{category.image? 'col-span-2': 'col-span-3' } p-3 rounded-md" on:click={() => goLink(`/category/${category.id}`)}>
+			<button class="{category.image ? 'col-span-2': 'col-span-3' } p-3 rounded-md" on:click={() => goLink(`/category/${category.id}`)}>
 				{category.name[$language]}
 			</button>
 		</div>
