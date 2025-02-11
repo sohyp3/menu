@@ -58,7 +58,7 @@
 				</div>
 			</a>
 
-			<!-- <a href="/parent_category/1" onclick={loader}>
+			<a href="/parent_category/1" onclick={loader}>
 				<div class="flex flex-col items-center">
 					<div
 						class="rounded-full bg-primary p-6 transition-colors duration-200 hover:cursor-pointer hover:bg-[#CCDFF2]"
@@ -86,7 +86,7 @@
 					</div>
 					<h1>{translations[$language].special}</h1>
 				</div>
-			</a> -->
+			</a>
 		</div>
 	</div>
 </div>

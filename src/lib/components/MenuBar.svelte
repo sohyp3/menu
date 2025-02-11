@@ -43,21 +43,21 @@
 			/>
 		</button>
 
-		<!-- <button onclick={() => goSomewhere('1')} class="p-3 rounded-full bg-primary">
+		<button onclick={() => goSomewhere('1')} class="p-3 rounded-full bg-primary">
 			<img
 				src="/icons/food.svg"
 				alt="food"
 				class="w-6 filter hue-rotate-180 invert saturate-200 sepia"
 			/>
-		</button> -->
+		</button>
 
-		<!-- <button onclick={() => goSomewhere('3')} class="p-3 rounded-full bg-primary">
+		<button onclick={() => goSomewhere('3')} class="p-3 rounded-full bg-primary">
 			<img
 				src="/icons/special.svg"
 				alt="Special"
 				class="w-6 filter hue-rotate-180 invert saturate-200 sepia"
 			/>
-		</button> -->
+		</button>
 	</div>
 </div>
 
