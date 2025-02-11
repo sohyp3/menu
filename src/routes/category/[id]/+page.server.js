@@ -16,7 +16,7 @@ export async function load({ params }) {
 
 
         const r_cat= await sql(`SELECT * FROM category WHERE id = ${id}`)
-        const items = await sql(`SELECT * FROM item WHERE  parent_id = ${id} ORDER BY id ASC `)
+        const items = await sql(`SELECT * FROM item WHERE parent_id = ${id} AND active = true ORDER BY id ASC`)
 
         let category = r_cat[0]
         isLoading.set(false)
