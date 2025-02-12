@@ -19,7 +19,7 @@ export async function load({ params }) {
         }
 
 
-        const category = await sql(`SELECT * FROM category  WHERE  parent_id = ${id} ORDER BY id ASC `)
+        const category = await sql(`SELECT * FROM category  WHERE  parent_id = ${id} and active = true ORDER BY id ASC `)
         const p_category = await sql(`SELECT * FROM parent_category WHERE id = ${id}`)
         let parent_category = p_category[0]
         // parent_category_store.set(parent_category.name);
