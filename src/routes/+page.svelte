@@ -3,6 +3,7 @@
 	import { language } from '$lib/stores/language.js';
 	import { isLoading } from '$lib/stores/loading.js';
 	import { onDestroy } from 'svelte';
+	import { onMount } from 'svelte';
 
 	function loader() {
 		isLoading.set(true);
@@ -12,6 +13,11 @@
 		en: { food: 'Food', drink: 'Drinks', special: 'Special' },
 		tr: { food: 'Yemek', drink: 'Içecek', special: 'Spesial' }
 	};
+
+	onMount(() => {
+        isLoading.set(false); // Hide loading when page is fully loaded
+    });
+
 </script>
 
 {#if $isLoading}
